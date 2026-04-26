@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2: Catálogo de libros</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Catálogo y Gestión del Inventario</h1>
+
+    <div class="control">
+        <h3>Registrar un nuevo libro</h3>
+
+        <input type="text" id="nuevoTitulo" placeholder="Título del libro">
+        <input type="text" id="nuevoAutor" placeholder="Autor del libro">
+        <input type="number" id="nuevoPrecio" placeholder="Precio del libro">
+
+        <label>
+            <input type="checkbox" id="nuevoDisponible" checked> Disponible para la venta
+        </label>
+
+        <button id="botonAgregar">Agregar Libro</button>
+        <div id="errorForm" style="color: #e74c3c; font-size: 0.9rem; margin-top: 10px;"></div>
+    </div>
+
+    <div class="control">
+        <input type="text" id="filtroAutor" placeholder="Nombre del autor">
+
+        <button id="filtrar">Filtrar</button>
+        <button id="mostrarDisponibles">Solo disponibles</button>
+        <button id="mostrarTodos">Ver todos</button>
+    </div>
+    
+    <ul id="listado"></ul>
+
+    <p id="stats"></p>
+
+    <script src="app.js"></script>
+</body>
+</html>

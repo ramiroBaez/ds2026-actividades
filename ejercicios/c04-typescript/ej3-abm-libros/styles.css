@@ -1,0 +1,230 @@
+/* ── Variables ── */
+:root {
+  --fondo: #0f0e0c;
+  --superficie: #1a1814;
+  --borde: #2e2b25;
+  --acento: #c9a84c;
+  --acento-suave: #c9a84c22;
+  --texto: #e8e0d0;
+  --texto-suave: #7a7060;
+  --rojo: #c0392b;
+  --rojo-suave: #c0392b22;
+}
+ 
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+ 
+/* ── Body ── */
+body {
+  background-color: var(--fondo);
+  background-image: radial-gradient(circle, #2a2620 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--texto);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  padding: 48px 24px;
+}
+ 
+/* ── Contenedor central para todos los hijos directos del body ── */
+body > * {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+ 
+/* ── Título principal ── */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--acento);
+  letter-spacing: -1px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--borde);
+  margin-bottom: 32px;
+}
+ 
+/* ── Subtítulo dentro del formulario ── */
+h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--texto-suave);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width: 100%;
+}
+ 
+/* ── Sección de controles: formulario con fondo ── */
+.control {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  padding: 20px;
+}
+ 
+/* La sección de filtros es más discreta, sin fondo ni borde ── */
+.control:last-of-type {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-bottom: 32px;
+}
+ 
+/* ── Inputs de texto y número ── */
+.control input[type="text"],
+.control input[type="number"] {
+  flex: 1;
+  min-width: 160px;
+  padding: 10px 16px;
+  background: var(--fondo);
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  color: var(--texto);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+ 
+.control input[type="text"]:focus,
+.control input[type="number"]:focus {
+  border-color: var(--acento);
+}
+ 
+.control input::placeholder {
+  color: var(--texto-suave);
+}
+ 
+/* ── Checkbox con su label ── */
+.control label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+  cursor: pointer;
+  width: 100%;
+}
+ 
+.control input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--acento);
+  cursor: pointer;
+  flex: 0;
+  min-width: unset;
+}
+ 
+/* ── Botones generales ── */
+.control button {
+  padding: 10px 18px;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  background: var(--superficie);
+  color: var(--texto-suave);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+ 
+.control button:hover {
+  background: var(--acento-suave);
+  color: var(--acento);
+  border-color: var(--acento);
+}
+ 
+/* ── Botones primarios ── */
+#botonAgregar,
+#filtrar {
+  background: var(--acento);
+  color: #0f0e0c;
+  border-color: var(--acento);
+  font-weight: 500;
+}
+ 
+#botonAgregar:hover,
+#filtrar:hover {
+  background: #e0bc6a;
+  border-color: #e0bc6a;
+  color: #0f0e0c;
+}
+ 
+/* ── Lista de libros ── */
+#listado {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+ 
+/* ── Cada libro ── */
+#listado li {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-left: 3px solid var(--acento);
+  border-radius: 8px;
+  padding: 14px 20px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  transition: border-color 0.2s, transform 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+ 
+#listado li:hover {
+  border-color: var(--acento);
+  transform: translateX(4px);
+}
+ 
+/* ── Botón Eliminar dentro de cada li ── */
+.boton-eliminar {
+  padding: 6px 12px;
+  border: 1px solid var(--rojo);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--rojo);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+ 
+.boton-eliminar:hover {
+  background: var(--rojo-suave);
+}
+ 
+/* ── Mensaje de error ── */
+#errorForm {
+  width: 100%;
+  color: var(--rojo);
+  font-size: 0.85rem;
+}
+ 
+/* ── Estadísticas ── */
+#stats {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+  text-align: right;
+  padding-top: 12px;
+  border-top: 1px solid var(--borde);
+  letter-spacing: 0.3px;
+}
