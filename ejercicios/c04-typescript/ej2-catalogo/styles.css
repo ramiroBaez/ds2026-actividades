@@ -1,0 +1,162 @@
+/* ── Variables de color y tipografía ── */
+:root {
+  --fondo: #0f0e0c;
+  --superficie: #1a1814;
+  --borde: #2e2b25;
+  --acento: #c9a84c;
+  --acento-suave: #c9a84c22;
+  --texto: #e8e0d0;
+  --texto-suave: #7a7060;
+  --disponible: #4caf7d;
+  --no-disponible: #c0392b;
+}
+
+/* ── Reset básico ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Fondo y fuente base ── */
+body {
+  background-color: var(--fondo);
+  color: var(--texto);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  padding: 48px 24px;
+
+  /* Patrón sutil de puntos en el fondo */
+  background-image: radial-gradient(circle, #2a2620 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ── Contenedor central ── */
+body > * {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Título principal ── */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--acento);
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+
+  /* Línea decorativa debajo del título */
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--borde);
+  margin-bottom: 32px;
+}
+
+/* ── Área de controles (input + botones) ── */
+.control {
+  display: flex;
+  flex-wrap: wrap;   /* en pantallas chicas los elementos bajan de línea */
+  gap: 10px;
+  margin-bottom: 32px;
+  align-items: center;
+}
+
+/* ── Input de búsqueda ── */
+.control input {
+  flex: 1;           /* ocupa todo el espacio disponible */
+  min-width: 180px;
+  padding: 10px 16px;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  color: var(--texto);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+/* Cuando el input está enfocado, el borde se ilumina con el acento dorado */
+.control input:focus {
+  border-color: var(--acento);
+}
+
+/* Placeholder más tenue */
+.control input::placeholder {
+  color: var(--texto-suave);
+}
+
+/* ── Botones ── */
+.control button {
+  padding: 10px 18px;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  background: var(--superficie);
+  color: var(--texto-suave);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.control button:hover {
+  background: var(--acento-suave);
+  color: var(--acento);
+  border-color: var(--acento);
+}
+
+/* El primer botón (Filtrar) tiene estilo primario */
+.control button:first-of-type {
+  background: var(--acento);
+  color: #0f0e0c;
+  border-color: var(--acento);
+  font-weight: 500;
+}
+
+.control button:first-of-type:hover {
+  background: #e0bc6a;
+  border-color: #e0bc6a;
+  color: #0f0e0c;
+}
+
+/* ── Lista de libros ── */
+#listado {
+  list-style: none;   /* sacamos los puntos de la lista */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+/* ── Cada libro es un <li> ── */
+#listado li {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 16px 20px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  transition: border-color 0.2s, transform 0.15s;
+
+  /* Línea dorada a la izquierda */
+  border-left: 3px solid var(--acento);
+}
+
+#listado li:hover {
+  border-color: var(--acento);
+  transform: translateX(4px);  /* se mueve levemente a la derecha al hacer hover */
+}
+
+/* ── Estadísticas ── */
+#stats {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+  text-align: right;
+  padding-top: 12px;
+  border-top: 1px solid var(--borde);
+  letter-spacing: 0.3px;
+}
