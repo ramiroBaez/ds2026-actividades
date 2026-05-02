@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Variables ── */
+:root {
+  --fondo: #0a0a0f;
+  --superficie: #13131a;
+  --borde: #22222e;
+  --acento: #7c6af7;
+  --acento-suave: #7c6af722;
+  --texto: #e2e0f0;
+  --texto-suave: #5a5870;
+  --rojo: #e05555;
+  --rojo-suave: #e0555522;
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Body ── */
+body {
+  background-color: var(--fondo);
+  background-image: radial-gradient(circle, #16161f 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--texto);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  padding: 48px 24px;
+}
+
+/* ── Contenedor central ── */
+body > * {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Título ── */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--acento);
+  letter-spacing: -1px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--borde);
+  margin-bottom: 32px;
+}
+
+/* ── Área de búsqueda ── */
+.buscador-libro {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.buscador-libro input {
+  flex: 1;
+  padding: 12px 18px;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  color: var(--texto);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.buscador-libro input:focus {
+  border-color: var(--acento);
+}
+
+.buscador-libro input::placeholder {
+  color: var(--texto-suave);
+}
+
+.buscador-libro button {
+  padding: 12px 24px;
+  background: var(--acento);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.buscador-libro button:hover {
+  background: #9b8cf9;
+}
+
+/* ── Mensaje de error ── */
+#error:not(:empty) {
+  background: var(--rojo-suave);
+  border: 1px solid var(--rojo);
+  border-left: 3px solid var(--rojo);
+  border-radius: 8px;
+  padding: 14px 20px;
+  color: var(--rojo);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+
+/* ── Mensaje de carga ── */
+#cargando {
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+  animation: pulso 1.2s ease-in-out infinite;
+}
+
+@keyframes pulso {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* ── Grilla de tarjetas ── */
+/* grid hace que las tarjetas se acomoden en columnas automáticamente */
+/* repeat(auto-fill, minmax(200px, 1fr)) significa:
+   "poné tantas columnas como entren, cada una de mínimo 200px" */
+#resultados {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* ── Cada tarjeta de libro ── */
+.tarjeta {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-top: 3px solid var(--acento);
+  border-radius: 8px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.15s, border-color 0.2s;
+}
+
+.tarjeta:hover {
+  transform: translateY(-4px);
+  border-color: var(--acento);
+}
+
+/* Título del libro */
+.tarjeta h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--texto);
+  line-height: 1.4;
+}
+
+/* Autor */
+.tarjeta p {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+/* Año */
+.tarjeta span {
+  font-size: 0.8rem;
+  color: var(--acento);
+  margin-top: auto; /* empuja el año al fondo de la tarjeta */
+}
