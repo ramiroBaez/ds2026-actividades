@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Variables ── */
+:root {
+  --fondo: #0a0a0f;
+  --superficie: #13131a;
+  --borde: #22222e;
+  --acento: #7c6af7;
+  --acento-suave: #7c6af722;
+  --texto: #e2e0f0;
+  --texto-suave: #5a5870;
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Body ── */
+body {
+  background-color: var(--fondo);
+  background-image: radial-gradient(circle, #16161f 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--texto);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  padding: 48px 24px;
+}
+
+/* ── Contenedor central ── */
+body > * {
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Título ── */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--acento);
+  letter-spacing: -1px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--borde);
+  margin-bottom: 32px;
+}
+
+/* ── Lista ── */
+#lista-usuarios {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Cada usuario ── */
+#lista-usuarios li {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-left: 3px solid var(--acento);
+  border-radius: 8px;
+  padding: 16px 20px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  transition: transform 0.15s, border-color 0.2s;
+}
+
+#lista-usuarios li:hover {
+  transform: translateX(4px);
+  border-color: var(--acento);
+}
