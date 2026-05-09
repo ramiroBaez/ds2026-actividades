@@ -172,3 +172,115 @@ body {
   background: var(--negro);
   color: var(--blanco);
 }
+
+/* ── Detalle de libro ── */
+.detalle-libro {
+  min-height: calc(100vh - 70px); /* ocupa toda la pantalla menos la navbar */
+}
+
+.volver-link {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--texto-suave);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.volver-link:hover {
+  color: var(--negro);
+}
+
+/* ── Imagen del libro ── */
+.libro-imagen-wrap {
+  position: sticky; /* la imagen se queda fija mientras scrolleás el texto */
+  top: 24px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.libro-imagen {
+  width: 100%;
+  display: block;
+}
+
+/* ── Info del libro ── */
+.libro-genero {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--acento);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.libro-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.libro-autor {
+  font-size: 1rem;
+  color: var(--texto-suave);
+  margin-bottom: 0;
+}
+
+.separador {
+  border-color: #e0dbd4;
+  margin: 24px 0;
+}
+
+.libro-descripcion {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 32px;
+}
+
+.libro-precio {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--negro);
+  margin-bottom: 28px;
+}
+
+/* ── Botones del detalle ── */
+.btn-comprar {
+  background-color: var(--negro);
+  color: var(--blanco);
+  border: none;
+  border-radius: 2px;
+  padding: 14px 32px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-comprar:hover {
+  background-color: #333;
+  color: var(--blanco);
+  transform: translateY(-2px);
+}
+
+.btn-volver {
+  background: transparent;
+  border: 1px solid var(--negro);
+  border-radius: 2px;
+  color: var(--negro);
+  padding: 14px 32px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-volver:hover {
+  background: var(--negro);
+  color: var(--blanco);
+}

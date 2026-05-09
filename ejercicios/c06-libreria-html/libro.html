@@ -58,6 +58,70 @@
     </div>
   </nav>
 
+  <!-- ── DETALLE DEL LIBRO ───────────────────────────────── -->
+<section class="detalle-libro py-5">
+  <div class="container">
+
+    <!-- Link para volver — pequeño y discreto arriba del contenido -->
+    <a href="catalogo.html" class="volver-link mb-4 d-inline-block">
+      <i class="bi bi-arrow-left me-1"></i> Volver al catálogo
+    </a>
+
+    <div class="row g-5 align-items-start">
+
+      <!-- Columna izquierda: imagen -->
+      <!-- En pantallas medianas ocupa 4 de 12 columnas -->
+      <div class="col-md-4">
+        <div class="libro-imagen-wrap">
+          <img
+            src="https://covers.openlibrary.org/b/isbn/9780743273565-M.jpg"
+            alt="El Gran Gatsby"
+            class="libro-imagen"
+          >
+        </div>
+      </div>
+
+      <!-- Columna derecha: información -->
+      <!-- En pantallas medianas ocupa 8 de 12 columnas -->
+      <div class="col-md-8">
+
+        <!-- Género como etiqueta pequeña arriba del título -->
+        <span class="libro-genero">Novela clásica</span>
+
+        <h1 class="libro-titulo">El Gran Gatsby</h1>
+        <p class="libro-autor">F. Scott Fitzgerald</p>
+
+        <!-- Línea separadora -->
+        <hr class="separador">
+
+        <p class="libro-descripcion">
+          Ambientada en los dorados años veinte, esta novela sigue a Nick Carraway 
+          mientras navega por el mundo de los ricos en Long Island. A través de los 
+          ojos de Nick conocemos al enigmático Jay Gatsby, un millonario que organiza 
+          extravagantes fiestas con la esperanza de reconquistar a su antiguo amor, 
+          Daisy Buchanan. Una historia sobre el sueño americano, la obsesión y la 
+          inevitable decepción.
+        </p>
+
+        <!-- Precio -->
+        <div class="libro-precio">$8.500</div>
+
+        <!-- Botones -->
+        <!-- d-flex gap-3: los botones quedan en fila con espacio entre ellos -->
+        <div class="d-flex gap-3 flex-wrap">
+          <button class="btn btn-comprar">
+            <i class="bi bi-bag me-2"></i>Comprar
+          </button>
+          <a href="catalogo.html" class="btn btn-volver">
+            Ver catálogo
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
