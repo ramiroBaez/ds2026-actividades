@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Variables ── */
+:root {
+  --negro: #0d0d0d;
+  --blanco: #f5f2ee;
+  --acento: #c9a84c;
+  --acento-oscuro: #a8873a;
+  --texto-suave: #6b6560;
+  --superficie: #1a1814;
+  --borde: #2e2b25;
+}
+
+/* ── Base ── */
+body {
+  background-color: var(--blanco);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  color: var(--negro);
+}
+
+/* ── Navbar ── */
+.navbar {
+  border-bottom: 1px solid #1a1a1a;
+  padding: 16px 0;
+  letter-spacing: 0.5px;
+}
+
+.navbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--acento) !important;
+}
+
+.nav-link {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #aaa !important;
+  transition: color 0.2s;
+  margin-left: 8px;
+}
+
+.nav-link:hover {
+  color: var(--acento) !important;
+}
+
+/* ── Hero ── */
+.hero {
+  background-color: var(--negro);
+  background-image:
+    radial-gradient(ellipse at top left, #2a1f0a 0%, transparent 60%),
+    radial-gradient(ellipse at bottom right, #1a1200 0%, transparent 60%);
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.hero-tag {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--acento);
+  display: block;
+  margin-bottom: 16px;
+}
+
+.hero-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6rem); /* crece y achica según el ancho de pantalla */
+  font-weight: 700;
+  color: var(--blanco);
+  line-height: 1.05;
+  margin-bottom: 24px;
+}
+
+.hero-subtitulo {
+  font-size: 1.1rem;
+  color: #888;
+  max-width: 440px;
+  line-height: 1.7;
+}
+
+.btn-principal {
+  background-color: var(--acento);
+  color: var(--negro);
+  border: none;
+  border-radius: 2px; /* casi cuadrado, más editorial */
+  padding: 14px 32px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-principal:hover {
+  background-color: var(--acento-oscuro);
+  color: var(--negro);
+  transform: translateY(-2px);
+}
+
+/* ── Sección Destacados ── */
+.destacados {
+  background-color: var(--blanco);
+}
+
+.section-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--negro);
+  margin-bottom: 4px;
+}
+
+.section-sub {
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+/* ── Cards de libros ── */
+.libro-card {
+  border: 1px solid #e0dbd4;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background: #fff;
+}
+
+.libro-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+}
+
+.libro-card .card-img-top {
+  height: 280px;
+  object-fit: cover; /* recorta la imagen para que llene el espacio sin deformarse */
+}
+
+.libro-card .card-body {
+  padding: 20px;
+}
+
+.libro-card .card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.card-autor {
+  font-size: 0.82rem;
+  color: var(--texto-suave);
+  margin-bottom: 0;
+}
+
+.btn-ver {
+  background: transparent;
+  border: 1px solid var(--negro);
+  border-radius: 2px;
+  color: var(--negro);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 8px 20px;
+  transition: background 0.2s, color 0.2s;
+  width: 100%;
+}
+
+.btn-ver:hover {
+  background: var(--negro);
+  color: var(--blanco);
+}
