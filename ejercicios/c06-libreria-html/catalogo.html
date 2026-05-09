@@ -10,13 +10,55 @@
 
     <!-- Nuestro CSS propio, DESPUÉS de Bootstrap para poder pisarlo -->
     <link rel="stylesheet" href="css/styles.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
 
-    <!-- Botón de prueba para verificar que Bootstrap funciona -->
-    <button class="btn btn-primary">¡Hola Bootstrap!</button>
+  <!-- navbar: barra de navegación fija arriba -->
+  <!-- navbar-expand-lg: en pantallas grandes muestra los links, en chicas los colapsa en un menú hamburguesa -->
+  <!-- navbar-dark bg-dark: texto claro sobre fondo oscuro -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
 
-    <!-- Bootstrap JS — va antes del cierre del body -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- Marca/logo del sitio -->
+    <a class="navbar-brand" href="index.html">
+        <i class="bi bi-book"></i> Librería
+    </a>
+
+      <!-- Botón hamburguesa — aparece solo en pantallas chicas -->
+      <!-- data-bs-toggle y data-bs-target son atributos de Bootstrap
+           que conectan el botón con el menú colapsable -->
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#menuNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- El menú que se colapsa en pantallas chicas -->
+      <!-- El id tiene que coincidir con data-bs-target de arriba -->
+      <div class="collapse navbar-collapse" id="menuNav">
+        <ul class="navbar-nav ms-auto">
+          <!-- ms-auto empuja los links hacia la derecha -->
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="catalogo.html">Catálogo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="libro.html">Libro</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contacto.html">Contacto</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
