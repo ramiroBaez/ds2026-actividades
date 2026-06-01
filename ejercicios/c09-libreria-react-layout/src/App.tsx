@@ -1,3 +1,4 @@
+import Layout from './components/Layout/Layout'
 import Home from './pages/Home.tsx'
 
 import './App.css'
@@ -5,7 +6,9 @@ import './App.css'
 function App() {
   return (
     <>
-      <Home />
+      <Layout>
+        <Home />
+      </Layout>
     </>
   )
 }
