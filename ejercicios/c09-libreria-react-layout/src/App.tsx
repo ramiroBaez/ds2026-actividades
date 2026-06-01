@@ -1,15 +1,20 @@
+import { Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout/Layout'
 import Home from './pages/Home.tsx'
+import Catalogo from './pages/Catalogo.tsx'
+import LibroDetalle from './pages/LibroDetalle.tsx'
 
 import './App.css'
 
 function App() {
   return (
-    <>
-      <Layout>
-        <Home />
-      </Layout>
-    </>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/catalogo" element={<Catalogo />} />
+        <Route path="/libro/:id" element={<LibroDetalle />} />
+      </Routes>
+    </Layout>
   )
 }
 

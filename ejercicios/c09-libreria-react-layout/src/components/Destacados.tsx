@@ -54,6 +54,7 @@ function Destacados() {
           {libros.map(libro => (
             <div className="col" key={libro.id}>
               <LibroCard
+                id={libro.id}
                 titulo={libro.titulo}
                 autor={libro.autor}
                 imagen={libro.imagen}

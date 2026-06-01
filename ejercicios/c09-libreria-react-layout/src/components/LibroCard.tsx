@@ -1,12 +1,14 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 interface LibroCardProps {
+  id: number;
   titulo: string;
   autor: string;
   imagen: string;
 }
 
-function LibroCard({ titulo, autor, imagen }: LibroCardProps) {
+function LibroCard({ id, titulo, autor, imagen }: LibroCardProps) {
 
   const [meGusta, setMeGusta] = useState(false)
 
@@ -26,7 +28,9 @@ function LibroCard({ titulo, autor, imagen }: LibroCardProps) {
         <p className="card-autor">{autor}</p>
 
         <div className="d-flex gap-2 mt-auto">
-          <a href="/libro" className="btn btn-ver flex-grow-1">Ver más</a>
+          <Link to={`/libros/${id}`} className="btn btn-ver flex-grow-1">
+            Ver más
+          </Link>
 
           <button
             className={`btn btn-like ${meGusta ? 'activo' : ''}`}
