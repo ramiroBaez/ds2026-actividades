@@ -445,3 +445,19 @@ body {
   color: #e05555;
   background: #fff0f0;
 }
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main, .layout-main, .container-fluid {
+  flex-grow: 1;
+}

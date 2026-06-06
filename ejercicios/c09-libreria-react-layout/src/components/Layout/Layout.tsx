@@ -9,13 +9,13 @@ interface LayoutProps {
 function Layout({ children }: LayoutProps) {
   return (
     <>
-      <Navbar /> {/* El Header/Navbar arriba */}
+      <Navbar />
       
       <main>
-        {children} {/* Acá se va a inyectar la página activa (Home) */}
+        {children}
       </main>
       
-      <Footer /> {/* El Footer abajo */}
+      <Footer />
     </>
   )
 }
