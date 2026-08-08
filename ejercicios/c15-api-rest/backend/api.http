@@ -1,5 +1,84 @@
-### Hello
-GET http://localhost:3000/
+@baseUrl = http://localhost:3000
 
 ### Listar libros
-GET http://localhost:3000/libros
+GET {{baseUrl}}/api/libros
+
+### Ver un libro
+GET {{baseUrl}}/api/libros/1
+
+### Ver un libro que no existe
+GET {{baseUrl}}/api/libros/999
+
+### Crear un libro
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "Rayuela",
+  "autor": "Julio Cortázar",
+  "imagen": "https://covers.openlibrary.org/b/isbn/9788437604572-M.jpg",
+  "descripcion": "Una novela experimental que puede leerse de múltiples formas, explorando la búsqueda existencial de Horacio Oliveira."
+}
+
+### Editar un libro
+PUT {{baseUrl}}/api/libros/1
+Content-Type: application/json
+
+{
+  "titulo": "El Gran Gatsby (edición actualizada)",
+  "autor": "F. Scott Fitzgerald",
+  "imagen": "https://covers.openlibrary.org/b/isbn/9780743273565-M.jpg",
+  "descripcion": "Edición revisada de la crítica social sobre el éxito y la obsesión amorosa en los años veinte."
+}
+
+### Editar un libro que no existe
+PUT {{baseUrl}}/api/libros/999
+Content-Type: application/json
+
+{
+  "titulo": "No existe",
+  "autor": "Nadie",
+  "imagen": "https://...",
+  "descripcion": "..."
+}
+
+### Borrar un libro
+DELETE {{baseUrl}}/api/libros/7
+
+### Borrar un libro que no existe
+DELETE {{baseUrl}}/api/libros/999
+
+### Listar autores
+GET {{baseUrl}}/api/autores
+
+### Ver un autor
+GET {{baseUrl}}/api/autores/1
+
+### Ver un autor que no existe
+GET {{baseUrl}}/api/autores/999
+
+### Crear un autor
+POST {{baseUrl}}/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "Julio Cortázar",
+  "nacionalidad": "Argentino",
+  "biografia": "Uno de los grandes renovadores del cuento y la novela latinoamericana."
+}
+
+### Editar un autor
+PUT {{baseUrl}}/api/autores/1
+Content-Type: application/json
+
+{
+  "nombre": "F. Scott Fitzgerald",
+  "nacionalidad": "Estadounidense",
+  "biografia": "Escritor de la generación perdida, célebre por El Gran Gatsby y la era del jazz."
+}
+
+### Borrar un autor
+DELETE {{baseUrl}}/api/autores/4
+
+### Borrar un autor que no existe
+DELETE {{baseUrl}}/api/autores/999
