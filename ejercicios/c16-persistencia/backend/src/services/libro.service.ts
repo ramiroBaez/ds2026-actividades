@@ -1,82 +1,29 @@
 import { Libro } from "../types/libro.types";
+import { prisma } from "../config/prisma";
 
-const libros: Libro[] = [
-  {
-    id: 1,
-    titulo: "El Gran Gatsby",
-    autor: "F. Scott Fitzgerald",
-    imagen: "https://covers.openlibrary.org/b/isbn/9780743273565-M.jpg",
-    descripcion:
-      "Una apasionante crítica social sobre el éxito, el dinero y la obsesión amorosa en la alta sociedad neoyorquina de los años veinte.",
-  },
-  {
-    id: 2,
-    titulo: "Matar un ruiseñor",
-    autor: "Harper Lee",
-    imagen: "https://covers.openlibrary.org/b/isbn/9780061120084-M.jpg",
-    descripcion:
-      "Un clásico de la literatura estadounidense que aborda las tensiones raciales en el profundo Sur a través de la mirada inocente de Scout Finch.",
-  },
-  {
-    id: 3,
-    titulo: "1984",
-    autor: "George Orwell",
-    imagen: "https://covers.openlibrary.org/b/isbn/9780451524935-M.jpg",
-    descripcion:
-      "La obra cumbre de la distopía moderna sobre los peligros del totalitarismo y la pérdida de la libertad individual.",
-  },
-  {
-    id: 4,
-    titulo: "El cazador oculto",
-    autor: "J.D. Salinger",
-    imagen: "https://covers.openlibrary.org/b/isbn/9780316769174-M.jpg",
-    descripcion:
-      "Una novela emblemática sobre el desencanto juvenil y la difícil transición hacia el mundo adulto.",
-  },
-  {
-    id: 5,
-    titulo: "Dune",
-    autor: "Frank Herbert",
-    imagen: "https://covers.openlibrary.org/b/isbn/9780441013593-M.jpg",
-    descripcion:
-      "Una obra maestra de la ciencia ficción sobre la supervivencia en el planeta desértico Arrakis.",
-  },
-  {
-    id: 6,
-    titulo: "El Alquimista",
-    autor: "Paulo Coelho",
-    imagen: "https://covers.openlibrary.org/b/isbn/9780062315007-M.jpg",
-    descripcion:
-      "Un relato filosófico sobre el viaje del joven pastor Santiago en busca de su destino.",
-  },
-];
+// el array en memoria y el proximoId se van. Ahora los datos viven en la base.
 
-let proximoId = 7;
-
-export function findAll(): Libro[] {
-  return libros;
+export async function findAll(): Promise<Libro[]> {
+  return prisma.libro.findMany();
 }
 
-export function findById(id: number): Libro | undefined {
-  return libros.find((l) => l.id === id);
+export async function findById(id: number): Promise<Libro | null> {
+  return prisma.libro.findUnique({ where: { id } });
 }
 
-export function create(datos: Omit<Libro, "id">): Libro {
-  const nuevo: Libro = { id: proximoId++, ...datos };
-  libros.push(nuevo);
-  return nuevo;
+export async function create(datos: Omit<Libro, "id">): Promise<Libro> {
+  return prisma.libro.create({ data: datos });
 }
 
-export function update(id: number, datos: Omit<Libro, "id">): Libro | undefined {
-  const libro = libros.find((l) => l.id === id);
-  if (!libro) return undefined;
-  Object.assign(libro, datos);
-  return libro;
+export async function update(id: number, datos: Omit<Libro, "id">): Promise<Libro | null> {
+  const existe = await prisma.libro.findUnique({ where: { id } });
+  if (!existe) return null;
+  return prisma.libro.update({ where: { id }, data: datos });
 }
 
-export function remove(id: number): boolean {
-  const index = libros.findIndex((l) => l.id === id);
-  if (index === -1) return false;
-  libros.splice(index, 1);
+export async function remove(id: number): Promise<boolean> {
+  const existe = await prisma.libro.findUnique({ where: { id } });
+  if (!existe) return false;
+  await prisma.libro.delete({ where: { id } });
   return true;
 }
