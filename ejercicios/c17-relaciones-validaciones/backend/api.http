@@ -1,0 +1,142 @@
+@baseUrl = http://localhost:3000
+
+### ===== LIBROS: camino feliz =====
+
+### Listar libros
+GET {{baseUrl}}/api/libros
+
+### Ver un libro
+GET {{baseUrl}}/api/libros/1
+
+### Ver un libro que no existe
+GET {{baseUrl}}/api/libros/999
+
+### Crear un libro
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "Rayuela",
+  "precio": 9500,
+  "imagen": "https://covers.openlibrary.org/b/isbn/9788437604572-M.jpg",
+  "descripcion": "Una novela experimental que puede leerse de múltiples formas, explorando la búsqueda existencial de Horacio Oliveira.",
+  "autorId": 1
+}
+
+### Editar un libro
+PUT {{baseUrl}}/api/libros/1
+Content-Type: application/json
+
+{
+  "titulo": "El Gran Gatsby (edición actualizada)",
+  "precio": 8900,
+  "imagen": "https://covers.openlibrary.org/b/isbn/9780743273565-M.jpg",
+  "descripcion": "Edición revisada de la crítica social sobre el éxito y la obsesión amorosa en los años veinte.",
+  "autorId": 1
+}
+
+### Editar un libro que no existe
+PUT {{baseUrl}}/api/libros/999
+Content-Type: application/json
+
+{
+  "titulo": "No existe",
+  "precio": 1000,
+  "imagen": "https://...",
+  "descripcion": "...",
+  "autorId": 1
+}
+
+### Borrar un libro (ajustar el id según lo que tengas cargado antes de correr esto)
+DELETE {{baseUrl}}/api/libros/6
+
+### Borrar un libro que no existe
+DELETE {{baseUrl}}/api/libros/999
+
+### ===== AUTORES: camino feliz =====
+
+### Listar autores
+GET {{baseUrl}}/api/autores
+
+### Ver un autor
+GET {{baseUrl}}/api/autores/1
+
+### Ver un autor que no existe
+GET {{baseUrl}}/api/autores/999
+
+### Crear un autor
+POST {{baseUrl}}/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "Julio Cortázar",
+  "nacionalidad": "Argentina",
+  "biografia": "Uno de los grandes renovadores del cuento y la novela latinoamericana."
+}
+
+### Editar un autor
+PUT {{baseUrl}}/api/autores/1
+Content-Type: application/json
+
+{
+  "nombre": "F. Scott Fitzgerald",
+  "nacionalidad": "Estados Unidos",
+  "biografia": "Escritor de la generación perdida, célebre por El Gran Gatsby y la era del jazz."
+}
+
+### Borrar un autor (uno sin libros asociados, para que no choque con el caso 409 de abajo)
+DELETE {{baseUrl}}/api/autores/7
+
+### Borrar un autor que no existe
+DELETE {{baseUrl}}/api/autores/999
+
+### ===== Casos de error =====
+
+### 400 - libro sin título
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "precio": 5000,
+  "imagen": "https://...",
+  "descripcion": "Sin título, debería fallar",
+  "autorId": 1
+}
+
+### 400 - precio negativo
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "Libro con precio inválido",
+  "precio": -500,
+  "imagen": "https://...",
+  "descripcion": "El precio no puede ser negativo",
+  "autorId": 1
+}
+
+### 400 - id inválido (no numérico)
+GET {{baseUrl}}/api/libros/abc
+
+### 404 - actualizar un autor que no existe
+PUT {{baseUrl}}/api/autores/999
+Content-Type: application/json
+
+{
+  "nombre": "Nadie",
+  "nacionalidad": "Ninguna",
+  "biografia": "No existe"
+}
+
+### 409 - autor duplicado (nombre @unique)
+POST {{baseUrl}}/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "F. Scott Fitzgerald",
+  "nacionalidad": "Estados Unidos",
+  "biografia": "Duplicado a propósito para probar el 409"
+}
+
+### 409 - borrar un autor que tiene libros asociados (onDelete: Restrict por defecto)
+DELETE {{baseUrl}}/api/autores/1
