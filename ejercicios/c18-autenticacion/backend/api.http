@@ -1,0 +1,266 @@
+@baseUrl = http://localhost:3000
+
+### ===== AUTH: los doce casos =====
+
+### 1) Registro
+POST {{baseUrl}}/api/auth/registro
+Content-Type: application/json
+
+{
+  "nombre": "Ana",
+  "email": "ana@libreria.test",
+  "password": "Libreria2026"
+}
+
+### 2) Registro con el mismo email (409)
+POST {{baseUrl}}/api/auth/registro
+Content-Type: application/json
+
+{
+  "nombre": "Ana",
+  "email": "ana@libreria.test",
+  "password": "Libreria2026"
+}
+
+### 3) Registro con password débil (400)
+POST {{baseUrl}}/api/auth/registro
+Content-Type: application/json
+
+{
+  "nombre": "Ana",
+  "email": "otra@libreria.test",
+  "password": "corta"
+}
+
+### 4) Login con mail que no existe (401, mensaje genérico)
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "nadie@libreria.test",
+  "password": "Libreria2026"
+}
+
+### 5) Login con password incorrecta (401, mismo mensaje genérico)
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "ana@libreria.test",
+  "password": "incorrecta"
+}
+
+### 6) Login correcto (200 con token) — @name captura la respuesta
+# @name login
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "ana@libreria.test",
+  "password": "Libreria2026"
+}
+
+### Guardamos el token de la respuesta anterior
+@token = {{login.response.body.token}}
+
+### 7) GET /auth/yo sin header (401)
+GET {{baseUrl}}/api/auth/yo
+
+### 8) GET /auth/yo con token de CLIENTE (200)
+GET {{baseUrl}}/api/auth/yo
+Authorization: Bearer {{token}}
+
+### 9) POST /api/libros sin header (401)
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "Rayuela",
+  "precio": 9500,
+  "imagen": "https://covers.openlibrary.org/b/isbn/9788437604572-M.jpg",
+  "descripcion": "Novela experimental.",
+  "autorId": 1
+}
+
+### 10) POST /api/libros con token de CLIENTE (403)
+POST {{baseUrl}}/api/libros
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "titulo": "Rayuela",
+  "precio": 9500,
+  "imagen": "https://covers.openlibrary.org/b/isbn/9788437604572-M.jpg",
+  "descripcion": "Novela experimental.",
+  "autorId": 1
+}
+
+### Login como ADMIN (seed) para probar el 201
+# @name loginAdmin
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@libreria.test",
+  "password": "Admin1234"
+}
+
+### Guardamos el token de admin
+@tokenAdmin = {{loginAdmin.response.body.token}}
+
+### 11) POST /api/libros con token de ADMIN (201)
+POST {{baseUrl}}/api/libros
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "titulo": "Rayuela",
+  "precio": 9500,
+  "imagen": "https://covers.openlibrary.org/b/isbn/9788437604572-M.jpg",
+  "descripcion": "Novela experimental.",
+  "autorId": 1
+}
+
+### 12) GET /api/libros sin header (200, es público)
+GET {{baseUrl}}/api/libros
+
+### ===== LIBROS: camino feliz =====
+
+### Listar libros
+GET {{baseUrl}}/api/libros
+
+### Ver un libro
+GET {{baseUrl}}/api/libros/1
+
+### Ver un libro que no existe
+GET {{baseUrl}}/api/libros/999
+
+### Crear un libro
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "Rayuela",
+  "precio": 9500,
+  "imagen": "https://covers.openlibrary.org/b/isbn/9788437604572-M.jpg",
+  "descripcion": "Una novela experimental que puede leerse de múltiples formas, explorando la búsqueda existencial de Horacio Oliveira.",
+  "autorId": 1
+}
+
+### Editar un libro
+PUT {{baseUrl}}/api/libros/1
+Content-Type: application/json
+
+{
+  "titulo": "El Gran Gatsby (edición actualizada)",
+  "precio": 8900,
+  "imagen": "https://covers.openlibrary.org/b/isbn/9780743273565-M.jpg",
+  "descripcion": "Edición revisada de la crítica social sobre el éxito y la obsesión amorosa en los años veinte.",
+  "autorId": 1
+}
+
+### Editar un libro que no existe
+PUT {{baseUrl}}/api/libros/999
+Content-Type: application/json
+
+{
+  "titulo": "No existe",
+  "precio": 1000,
+  "imagen": "https://...",
+  "descripcion": "...",
+  "autorId": 1
+}
+
+### Borrar un libro (ajustar el id según lo que tengas cargado antes de correr esto)
+DELETE {{baseUrl}}/api/libros/6
+
+### Borrar un libro que no existe
+DELETE {{baseUrl}}/api/libros/999
+
+### ===== AUTORES: camino feliz =====
+
+### Listar autores
+GET {{baseUrl}}/api/autores
+
+### Ver un autor
+GET {{baseUrl}}/api/autores/1
+
+### Ver un autor que no existe
+GET {{baseUrl}}/api/autores/999
+
+### Crear un autor
+POST {{baseUrl}}/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "Julio Cortázar",
+  "nacionalidad": "Argentina",
+  "biografia": "Uno de los grandes renovadores del cuento y la novela latinoamericana."
+}
+
+### Editar un autor
+PUT {{baseUrl}}/api/autores/1
+Content-Type: application/json
+
+{
+  "nombre": "F. Scott Fitzgerald",
+  "nacionalidad": "Estados Unidos",
+  "biografia": "Escritor de la generación perdida, célebre por El Gran Gatsby y la era del jazz."
+}
+
+### Borrar un autor (uno sin libros asociados, para que no choque con el caso 409 de abajo)
+DELETE {{baseUrl}}/api/autores/7
+
+### Borrar un autor que no existe
+DELETE {{baseUrl}}/api/autores/999
+
+### ===== Casos de error =====
+
+### 400 - libro sin título
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "precio": 5000,
+  "imagen": "https://...",
+  "descripcion": "Sin título, debería fallar",
+  "autorId": 1
+}
+
+### 400 - precio negativo
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "Libro con precio inválido",
+  "precio": -500,
+  "imagen": "https://...",
+  "descripcion": "El precio no puede ser negativo",
+  "autorId": 1
+}
+
+### 400 - id inválido (no numérico)
+GET {{baseUrl}}/api/libros/abc
+
+### 404 - actualizar un autor que no existe
+PUT {{baseUrl}}/api/autores/999
+Content-Type: application/json
+
+{
+  "nombre": "Nadie",
+  "nacionalidad": "Ninguna",
+  "biografia": "No existe"
+}
+
+### 409 - autor duplicado (nombre @unique)
+POST {{baseUrl}}/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "F. Scott Fitzgerald",
+  "nacionalidad": "Estados Unidos",
+  "biografia": "Duplicado a propósito para probar el 409"
+}
+
+### 409 - borrar un autor que tiene libros asociados (onDelete: Restrict por defecto)
+DELETE {{baseUrl}}/api/autores/1
