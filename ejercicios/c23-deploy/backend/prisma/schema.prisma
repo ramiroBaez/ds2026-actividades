@@ -1,6 +1,7 @@
 generator client {
   provider = "prisma-client" // Prisma 7. NO "prisma-client-js"
   output   = "../src/generated/prisma"
+  moduleFormat = "cjs"           // el back compila a CommonJS
 }
 
 datasource db {
